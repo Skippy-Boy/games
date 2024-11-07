@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Weight | Your Personalized AI Diet Planner</title>
+    <link rel="icon" href="easyweight favicon.png" type="image/png">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        a {
+    text-decoration: none;
+}
+
+        body {
+            background: linear-gradient(180deg, #ffffff, #f4f8f3);
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 2em 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Background Icon Styles */
+        .background-icons {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .background-icons .icon {
+            font-size: 8em;
+            color: #4CAF50;
+            position: absolute;
+            opacity: 0.1;
+            animation: floatIcon 5s infinite alternate;
+        }
+        .icon-1 { top: 10%; left: 20%; transform: rotate(-15deg); }
+        .icon-2 { top: 30%; left: 60%; transform: rotate(30deg); }
+        .icon-3 { top: 70%; left: 40%; transform: rotate(-45deg); }
+
+        /* Float animation for background icons */
+        @keyframes floatIcon {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(15px) scale(1.05); }
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ffffff;
+            padding: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0e0e0;
+            animation: slideInLeft 1s ease forwards;
+            opacity: 0;
+        }
+        nav img {
+            width: 150px;
+        }
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            gap: 1.5em;
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #e6f4e6;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2em 0;
+            animation: fadeInDown 1.5s ease forwards;
+            opacity: 0;
+        }
+        header p {
+            color: #4CAF50;
+            font-size: 1.1em;
+            margin-top: 0.5em;
+        }
+
+        /* Main Sections */
+        .section {
+            padding: 3em 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+        }
+        h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 0.5em;
+            animation: slideInRight 1.5s ease forwards;
+            opacity: 0;
+        }
+        p {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 800px;
+            margin: 0.5em auto;
+            line-height: 1.6em;
+            animation: fadeIn 2s ease forwards;
+            opacity: 0;
+        }
+
+        /* Button */
+        .cta-button {
+            display: inline-block;
+            padding: 0.8em 2em;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            margin-top: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1.8s ease forwards;
+            opacity: 0;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* AI-Powered Diet Plans Section */
+        .ai-section {
+            background-color: #f9f9f9;
+            padding: 2em;
+            border-radius: 10px;
+            animation: fadeInUp 1.5s ease forwards, scaleUp 1s ease forwards;
+            opacity: 0;
+        }
+        .ai-section p {
+            color: #333;
+            font-size: 1.1em;
+        }
+        .ai-section ul {
+            list-style: disc;
+            margin-top: 1em;
+            padding-left: 1.5em;
+            text-align: left;
+            max-width: 700px;
+            margin: 1em auto;
+            animation: fadeIn 2s ease forwards;
+            opacity: 0;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            display: flex;
+            gap: 2em;
+            justify-content: center;
+            margin-top: 2em;
+            animation: fadeInUp 2s ease forwards;
+            opacity: 0;
+        }
+        .price-box {
+            padding: 2em;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: zoomIn 1s ease forwards;
+            opacity: 0;
+        }
+        .price-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+        }
+        .price-box h3 {
+            color: #4CAF50;
+            font-size: 1.5em;
+        }
+        .price-box p {
+            margin-top: 1em;
+            font-size: 1.1em;
+        }
+        .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Success Stories Section */
+        .stories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            justify-content: center;
+            margin-top: 2em;
+        }
+        .story {
+            flex: 1 1 300px;
+            padding: 1.5em;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-style: italic;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInLeft 1.8s ease forwards;
+            opacity: 0;
+        }
+        .story:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 1em 0;
+            text-align: center;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.95); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Icons -->
+    <div class="background-icons">
+        <div class="icon icon-1">></div>
+        <div class="icon icon-2">></div>
+        <div class="icon icon-3">></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <img src="EasyWeight-logo.png" alt="Easy Weight Logo">
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#ai-powered">AI Diet Plans</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#stories">Success Stories</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container" id="hero">
+        <div class="section">
+            <h2>Welcome to Easy Weight</h2>
+            <p>Achieve your health goals effortlessly with Easy Weight. Our advanced AI-driven diet plans ensure that every meal you eat is optimized for your unique goals and preferences. Embrace the future of personalized nutrition.</p>
+            <a href="signup.html" class="cta-button">Sign Up Now</a>
+        </div>
+    </section>
+
+    <!-- AI-Powered Diet Plans Section -->
+    <section class="container" id="ai-powered">
+        <div class="section ai-section">
+            <h2>AI-Powered Diet Plans</h2>
+            <p>At Easy Weight, we use cutting-edge AI technology to analyze your personal health metrics and dietary preferences. Here’s how our AI makes achieving your goals easy and efficient:</p>
+            <ul>
+                <li><strong>Customized Caloric Needs:</strong> Our AI calculates your daily caloric intake based on your age, weight, height, and activity level in metric units.</li>
+                <li><strong>Adaptive Meal Plans:</strong> The AI adjusts your diet as you progress, ensuring consistent results without hitting plateaus.</li>
+                <li><strong>Smart Nutrient Tracking:</strong> Track macros and essential nutrients seamlessly, with automatic adjustments for optimal health and performance.</li>
+            </ul>
+            <p>Experience the most advanced and personalized diet planning available today, powered by artificial intelligence.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="container" id="pricing">
+        <div class="section">
+            <h2>Pricing & Free Trial</h2>
+            <div class="pricing">
+                <div class="price-box">
+                    <h3><a href="free_trial.html">Free Trial</a></h3>
+                    <p>Try Easy Weight for 7 days at no cost!</p>
+                    <p>1 AI diet generation and basic support.</p>
+                </div>
+                <div class="price-box">
+                    <h3><a href="monthly_plan.html">Monthly Plan</a></h3>
+                    <p class="price">AUD $29.99</p>
+                    <p>3 AI diet generations per month, with priority support.</p>
+                </div>
+                <div class="price-box">
+                    <h3><a href="annual_plan.html">Annual Plan</a></h3>
+                    <p class="price">AUD $299.99</p>
+                    <p>Unlimited AI diet generations and full access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="container" id="stories">
+        <div class="section">
+            <h2>Success Stories</h2>
+            <div class="stories">
+                <div class="story">
+                    <p>"I lost 7 kg in just 3 months! Easy Weight’s AI-based plan kept me motivated and on track without any confusion."</p>
+                </div>
+                <div class="story">
+                    <p>"The personalized diet plan not only helped me lose weight but also improved my energy levels. I feel healthier every day!"</p>
+                </div>
+                <div class="story">
+                    <p>"I've finally found a program that adapts to my lifestyle. The AI recommendations were spot on – couldn't be happier!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="container" id="signup">
+        <div class="section">
+            <h2>Start Your Journey Today</h2>
+            <p>Sign up now to start your personalized diet plan with Easy Weight. Let our AI guide you toward a healthier future.</p>
+            <a href="signup.html" class="cta-button">Sign Up Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Easy Weight. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

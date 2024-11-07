@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Weight | Free 7-Day Trial Plan (Restricted)</title>
+    <link rel="icon" href="easyweight favicon.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #ffffff, #f4f8f3);
+            color: #333;
+            margin: 0;
+            padding: 2em;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2.5em;
+            margin: auto;
+            background-color: #ffffff;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeIn 1.5s ease forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 1em;
+            animation: slideInLeft 1s ease;
+        }
+        p {
+            margin-bottom: 1.5em;
+            color: #666;
+            line-height: 1.6;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+            animation: fadeInUp 1.5s ease;
+        }
+        label {
+            text-align: left;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        input, select, button {
+            padding: 0.8em;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+        }
+        input:focus, select:focus {
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .results {
+            margin-top: 2em;
+            padding: 2em;
+            background-color: #f4f8f3;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .hidden-feature {
+            margin-top: 2em;
+            padding: 1.5em;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            color: #666;
+            font-style: italic;
+            animation: fadeInUp 1.5s ease;
+        }
+        .calendar {
+            margin-top: 3em;
+            padding: 1.5em;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            animation: fadeInUp 1.5s ease;
+        }
+        .calendar h4 {
+            color: #4CAF50;
+            margin-bottom: 1em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 0.8em;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.8em 2em;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Free 7-Day Trial Weight Loss Plan (Limited Features)</h2>
+        <p>Fill out your basic details below to receive a free personalized 7-day diet plan. Some features are restricted for the free trial.</p>
+
+        <form id="weightLossForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required>
+
+            <label for="weight">Current Weight (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.1" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" required>
+
+            <label for="activity">Activity Level:</label>
+            <select id="activity" name="activity" required>
+                <option value="sedentary">Sedentary (little or no exercise)</option>
+                <option value="light">Lightly active (light exercise/sports 1-3 days/week)</option>
+                <option value="moderate">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                <option value="active">Active (intense exercise/sports 6-7 days/week)</option>
+                <option value="very_active">Very active (hard exercise/sports, physical job)</option>
+            </select>
+
+            <button type="button" onclick="generatePlan()">Get My Diet Plan</button>
+        </form>
+
+        <div class="hidden-feature">
+            <h3>Restricted Features:</h3>
+            <p>In the free trial version, advanced features such as vegetarian options, food preferences, and personalized portion sizes are restricted. To unlock these features and get a fully customized plan, please consider subscribing to our premium plans.</p>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <h3>Your Personalized 7-Day Diet Plan</h3>
+            <p id="planDetails"></p>
+        </div>
+
+        <div class="calendar">
+            <h4>Your 7-Day Eating Schedule</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Meal 1</th>
+                        <th>Meal 2</th>
+                        <th>Meal 3</th>
+                        <th>Snacks</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarBody">
+                    <!-- Eating schedule will be generated here -->
+                </tbody>
+            </table>
+            <a id="downloadCalendar" href="#" class="download-button" download="7_day_eating_schedule.txt">Download 7-Day Schedule</a>
+        </div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const activity = document.getElementById('activity').value;
+
+            let calorieIntake;
+            switch (activity) {
+                case 'sedentary':
+                    calorieIntake = weight * 24 * 1.2;
+                    break;
+                case 'light':
+                    calorieIntake = weight * 24 * 1.375;
+                    break;
+                case 'moderate':
+                    calorieIntake = weight * 24 * 1.55;
+                    break;
+                case 'active':
+                    calorieIntake = weight * 24 * 1.725;
+                    break;
+                case 'very_active':
+                    calorieIntake = weight * 24 * 1.9;
+                    break;
+                default:
+                    calorieIntake = weight * 24 * 1.2;
+            }
+
+            const dietPlan = `Hi ${name}, based on your age (${age}), weight (${weight} kg), height (${height} cm), and activity level (${activity}), your recommended daily caloric intake is approximately ${Math.round(calorieIntake)} calories. We recommend a balanced diet consisting of 3 main meals and 2 healthy snacks each day, focusing on nutrient-dense foods to help you reach your weight goals.`;
+
+            document.getElementById('planDetails').innerText = dietPlan;
+            document.getElementById('results').style.display = 'block';
+
+            // Generate eating schedule
+            const calendarBody = document.getElementById('calendarBody');
+            calendarBody.innerHTML = '';
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const meals = ['Oats with almond milk and banana', 'Grilled chicken with quinoa and broccoli', 'Baked salmon with sweet potatoes', 'Greek yogurt with almonds', 'Tofu stir-fry with mixed vegetables'];
+            days.forEach((day, index) => {
+                const meal1 = meals[index % meals.length];
+                const meal2 = meals[(index + 1) % meals.length];
+                const meal3 = meals[(index + 2) % meals.length];
+                const snacks = 'Fruit, nuts, or yogurt';
+                calendarBody.innerHTML += `<tr>
+                    <td>${day}</td>
+                    <td>${meal1}</td>
+                    <td>${meal2}</td>
+                    <td>${meal3}</td>
+                    <td>${snacks}</td>
+                </tr>`;
+            });
+
+            // Generate downloadable schedule
+            const downloadCalendar = document.getElementById('downloadCalendar');
+            let calendarText = 'Your 7-Day Eating Schedule\n\n';
+            days.forEach((day, index) => {
+                const meal1 = meals[index % meals.length];
+                const meal2 = meals[(index + 1) % meals.length];
+                const meal3 = meals[(index + 2) % meals.length];
+                calendarText += `${day}:\n  Meal 1: ${meal1}\n  Meal 2: ${meal2}\n  Meal 3: ${meal3}\n  Snacks: Fruit, nuts, or yogurt\n\n`;
+            });
+            const blob = new Blob([calendarText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            downloadCalendar.href = url;
+        }
+    </script>
+</body>
+</html>

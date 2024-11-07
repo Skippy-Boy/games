@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Weight | Monthly Subscriber Weight Loss Plan</title>
+    <link rel="icon" href="easyweight favicon.png" type="image/png">
+    <style>
+        /* Styles remain the same */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #ffffff, #f4f8f3);
+            color: #333;
+            margin: 0;
+            padding: 2em;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2.5em;
+            margin: auto;
+            background-color: #ffffff;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeIn 1.5s ease forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 1em;
+            animation: slideInLeft 1s ease;
+        }
+        p {
+            margin-bottom: 1.5em;
+            color: #666;
+            line-height: 1.6;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+            animation: fadeInUp 1.5s ease;
+        }
+        label {
+            text-align: left;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        input, select, button {
+            padding: 0.8em;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+        }
+        input:focus, select:focus {
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .results {
+            margin-top: 2em;
+            padding: 2em;
+            background-color: #f4f8f3;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            display: none;
+        }
+        .calendar {
+            margin-top: 3em;
+            padding: 1.5em;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .calendar h4 {
+            color: #4CAF50;
+            margin-bottom: 1em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 0.8em;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.8em 2em;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Monthly Subscriber Weight Loss Plan</h2>
+        <p>Fill out your details below to receive a personalized diet plan and schedule.</p>
+
+        <form id="weightLossForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required>
+
+            <label for="weight">Current Weight (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.1" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" required>
+
+            <label for="activity">Activity Level:</label>
+            <select id="activity" name="activity" required>
+                <option value="sedentary">Sedentary (little or no exercise)</option>
+                <option value="light">Lightly active (light exercise/sports 1-3 days/week)</option>
+                <option value="moderate">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                <option value="active">Active (intense exercise/sports 6-7 days/week)</option>
+                <option value="very_active">Very active (hard exercise/sports, physical job)</option>
+            </select>
+
+            <label for="weightGoal">How much weight do you want to lose? (kg)</label>
+            <input type="number" id="weightGoal" name="weightGoal" step="0.1" required>
+
+            <label for="timeGoal">In how much time do you want to lose this weight? (weeks)</label>
+            <input type="number" id="timeGoal" name="timeGoal" required>
+
+            <label for="vegetarian">Are you vegetarian?</label>
+            <select id="vegetarian" name="vegetarian" required>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label for="favoriteFoods">Favorite Foods (optional, separated by commas):</label>
+            <input type="text" id="favoriteFoods" name="favoriteFoods" placeholder="e.g., chicken, almonds, bananas">
+
+            <button type="button" onclick="generatePlan()">Get My Diet Plan</button>
+        </form>
+
+        <div id="results" class="results">
+            <h3>Your Personalized Diet Plan</h3>
+            <p id="planDetails"></p>
+        </div>
+
+        <div class="calendar">
+            <h4>Your Weekly Eating Schedule</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Meal 1</th>
+                        <th>Meal 2</th>
+                        <th>Meal 3</th>
+                        <th>Snacks</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarBody">
+                    <!-- Eating schedule will be generated here -->
+                </tbody>
+            </table>
+            <a id="downloadCalendar" href="#" class="download-button" download="eating_schedule.txt">Download Schedule</a>
+        </div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            console.log("Generating plan..."); // Debug message
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const activity = document.getElementById('activity').value;
+            const weightGoal = document.getElementById('weightGoal').value;
+            const timeGoal = document.getElementById('timeGoal').value;
+            const favoriteFoods = document.getElementById('favoriteFoods').value.toLowerCase().split(',').map(f => f.trim());
+
+            let calorieDeficit = (weightGoal * 7700) / (timeGoal * 7);
+            let calorieIntake;
+            switch (activity) {
+                case 'sedentary': calorieIntake = weight * 24 * 1.2 - calorieDeficit; break;
+                case 'light': calorieIntake = weight * 24 * 1.375 - calorieDeficit; break;
+                case 'moderate': calorieIntake = weight * 24 * 1.55 - calorieDeficit; break;
+                case 'active': calorieIntake = weight * 24 * 1.725 - calorieDeficit; break;
+                case 'very_active': calorieIntake = weight * 24 * 1.9 - calorieDeficit; break;
+            }
+
+            document.getElementById('planDetails').innerText = 
+                `Hi ${name}, based on your age (${age}), weight (${weight} kg), height (${height} cm), ` +
+                `activity level (${activity}), and weight loss goal of ${weightGoal} kg in ${timeGoal} weeks, ` +
+                `your recommended daily caloric intake is approximately ${Math.round(calorieIntake)} calories.`;
+
+            document.getElementById('results').style.display = 'block';
+
+            const calendarBody = document.getElementById('calendarBody');
+            calendarBody.innerHTML = '';
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const meals = [
+                { name: 'Oats with almond milk and banana', portion: '100g oats, 200ml almond milk, 1 banana', link: 'https://www.coles.com.au/' },
+                { name: 'Grilled chicken with quinoa and broccoli', portion: '150g chicken breast, 100g quinoa, 150g broccoli', link: 'https://www.coles.com.au/' },
+                { name: 'Baked salmon with sweet potatoes', portion: '200g salmon, 150g sweet potatoes', link: 'https://www.coles.com.au/' },
+                { name: 'Greek yogurt with almonds', portion: '200g Greek yogurt, 30g almonds', link: 'https://www.coles.com.au/' },
+                { name: 'Tofu stir-fry with mixed vegetables', portion: '200g tofu, 200g mixed vegetables', link: 'https://www.coles.com.au/' }
+            ];
+
+            days.forEach((day, index) => {
+                let meal1 = meals[index % meals.length];
+                let meal2 = meals[(index + 1) % meals.length];
+                let meal3 = meals[(index + 2) % meals.length];
+
+                if (favoriteFoods.length > 0) {
+                    meal1 = meals.find(m => favoriteFoods.includes(m.name.toLowerCase())) || meal1;
+                    meal2 = meals.find(m => favoriteFoods.includes(m.name.toLowerCase())) || meal2;
+                    meal3 = meals.find(m => favoriteFoods.includes(m.name.toLowerCase())) || meal3;
+                }
+
+                calendarBody.innerHTML += `<tr>
+                    <td>${day}</td>
+                    <td><a href="${meal1.link}" target="_blank">${meal1.name} - ${meal1.portion}</a></td>
+                    <td><a href="${meal2.link}" target="_blank">${meal2.name} - ${meal2.portion}</a></td>
+                    <td><a href="${meal3.link}" target="_blank">${meal3.name} - ${meal3.portion}</a></td>
+                    <td>Fruit (100g), nuts (30g), or yogurt (150g)</td>
+                </tr>`;
+            });
+        }
+    </script>
+</body>
+</html>

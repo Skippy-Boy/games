@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Easy Weight</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: linear-gradient(180deg, #ffffff, #f4f8f3);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 0.5em;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 1.5em;
+            animation: fadeInDown 1.2s ease forwards;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        label {
+            font-size: 1em;
+            color: #4CAF50;
+            text-align: left;
+            display: block;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        input, select {
+            padding: 0.8em;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+        }
+        input:focus, select:focus {
+            border-color: #4CAF50;
+        }
+
+        /* Button */
+        .signup-button {
+            padding: 0.8em;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 2s ease forwards;
+            opacity: 0;
+        }
+        .signup-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer-text {
+            margin-top: 1em;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .footer-text a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sign Up Form Container -->
+    <div class="container">
+        <h2>Sign Up for Easy Weight</h2>
+        <p>Create your account to start your personalized AI diet plan journey.</p>
+
+        <form action="/submit_signup" method="post">
+            <!-- Name -->
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <!-- Email -->
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <!-- Age -->
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
+
+            <!-- Plan Selection -->
+            <label for="plan">Select Your Plan</label>
+            <select id="plan" name="plan" required>
+                <option value="free">Free Trial - 7 Days</option>
+                <option value="monthly">Monthly Plan - AUD $29.99</option>
+                <option value="annual">Annual Plan - AUD $299.99</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit" class="signup-button">Sign Up</button>
+        </form>
+
+        <!-- Footer Text -->
+        <p class="footer-text">Already have an account? <a href="/login">Log In</a></p>
+    </div>
+
+</body>
+</html>
